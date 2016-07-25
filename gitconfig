@@ -1,21 +1,29 @@
+[core]
+	editor = /usr/bin/vim
+	excludesfile = /Users/andrew/.gitignore_global
+[user]
+	name = Andrew Williams
+	email = awilliams@intoxitrack.net
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [alias]
   st = status
   co = checkout
   ls = log --oneline
   ca = commit --amend -C HEAD
   dc = diff --cached
-  unstage = reset HEAD --
-  switch = !legit switch \"$@\"
-  branches = !legit branches
-  sprout = !legit sprout \"$@\"
-  unpublish = !legit unpublish \"$@\"
-  harvest = !legit harvest \"$@\"
-  sync = !legit sync \"$@\"
-  publish = !legit publish \"$@\"
-  graft = !legit graft \"$@\"
+	unstage = reset HEAD --
 
   bclean = "!f(){ git branch --merged master | awk '$NF !~ /master/ {print $NF}' | xargs git branch -d; }; f"
 [diff]
-  tool = meld
+	tool = meld
 [push]
-  default = simple
+	default = simple
+[http]
+	cookiefile = /Users/andrew/.gitcookies
+[merge]
+	stat = true

@@ -79,7 +79,11 @@ export EDITOR="vim"
 export WORKUSER='awilliams'
 
 function hop() {
-  ssh -Xat $WORKUSER@hop.intoxitrack.net
+  if [ -z "$1" ]; then
+    ssh -XAt $WORKUSER@hop.intoxitrack.net
+  else
+    ssh -XAt $WORKUSER@hop.intoxitrack.net ssh -AXt $WORKUSER@$1.intoxitrack.net
+  fi
 }
 
 function gethostbyname() {
@@ -107,10 +111,25 @@ function chef-whois {
   knife search "ipaddress:${1} or cloud_public_ipv4:${1} or cloud_local_ipv4:${1}"
 }
 
-function errno {
+function _errno {
   cpp -dM /usr/include/errno.h | grep 'define E' | sort -n -k 3
 }
 
+function kubetunnel {
+  ssh -f -nNT -L 8080:127.0.0.1:8080 $1
+}
+
+function profile-userspace {
+  if [ -z "${1}" ]; then
+    echo "Please specify an application name" >&2
+    return 1
+  fi
+  sudo dtrace -n "profile-97 /execname == \"${1}\"/ { @[ustack()] = count(); }"
+}
+
+alias _join='ruby -e "puts STDIN.readlines.map(&:strip).join"'
+
+alias incver='git commit -m "Increment version for release"'
 
 # Nodejs
 export PATH=/usr/local/share/npm/bin:$PATH
@@ -125,7 +144,7 @@ zstyle ':vcs_info:*' formats       '(%F{2}%b%f)'
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 precmd () { vcs_info }
 
-[ $UID != 0 ] && PS1=$'[%{\e[1;32m%}%n:%l %{\e[1;34m%}%2~%{\e[00m%}]${vcs_info_msg_0_}$ '
+[ $UID != 0 ] && PS1=$'[%{\e[1;32m%}%n:%l %{\e[1;34m%}%2~%{\e[00m%}]${vcs_info_msg_0_}%(1j.|%j|.)$ '
 
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #export PATH=$HOME/.rbenv/bin:$PATH
@@ -142,5 +161,7 @@ source '/Users/andrew/google-cloud-sdk/path.zsh.inc'
 # # The next line enables bash completion for gcloud.
 source '/Users/andrew/google-cloud-sdk/completion.zsh.inc'
 
-# Aws completion
 source /usr/local/share/zsh/site-functions/_aws
+source /usr/local/share/zsh/site-functions/_docker
+#source /usr/local/share/zsh/site-functions/_git
+#source /usr/local/share/zsh/site-functions/_terraform
