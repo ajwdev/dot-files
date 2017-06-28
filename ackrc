@@ -1,0 +1,5 @@
+--follow
+--context=3
+
+--ignore-directory=is:node_modules
+--ignore-directory=vendor

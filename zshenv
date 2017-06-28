@@ -1,12 +1,18 @@
-export ANSIBLE_NOCOWS=1
-export SVN_EDITOR=/usr/bin/vim
 export GOPATH=$HOME/source/go
+export PLAN9=/usr/local/plan9port
+export CHEF=/opt/chefdk/bin
+export NPM=/usr/local/shared/npm/bin
+export PATH=$HOME/nvim-macos/nvim-osx64/bin:$GOPATH/bin:$HOME/.cargo/bin:$CHEF:/usr/local/sbin:/usr/local/bin:$PATH
 
-eval "$(rbenv init -)"
-export PATH=$HOME/.rbenv/bin:$PATH
+# XXX plan9port has a program on its PATH called `bundle` so make sure we do
+# this after we set the PATH for plan9
 
-PLAN9=/usr/local/plan9port export PLAN9
-# TODO Clean this up
-PATH=/Users/andrew/bin:/opt/chefdk/bin:/usr/local/share/npm/bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin:$HOME/.cargo/bin:$PLAN9/bin export PATH
+# export PATH=$HOME/bin:$PATH
+
+export EDITOR=vim
+export JAVA_HOME="$(/usr/libexec/java_home)"
+
+# Dont use cowsay when running ansible playbooks
+export ANSIBLE_NOCOWS=1
 
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
