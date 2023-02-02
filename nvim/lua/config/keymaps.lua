@@ -28,11 +28,4 @@ nnoremap <F3> :UndotreeToggle<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
 nnoremap <F5> :Twilight<CR>
 nnoremap <F9> :lua require("dapui").toggle()<CR>
-
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-noremap <leader>b <ESC>:Buffers<CR>
-noremap <leader>f <ESC>:Files<CR>
-nmap <C-P> :Files<CR>
 ]]

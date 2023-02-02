@@ -2,9 +2,12 @@
 require("neodev").setup {}
 
 local lspconfig = require('lspconfig')
+local util = require('lspconfig/util')
 
 lspconfig.gopls.setup {
   cmd = {'gopls','--remote=auto'},
+  filetypes = {"go", "gomod"},
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
     gopls = {
       hints = {
@@ -16,6 +19,11 @@ lspconfig.gopls.setup {
         parameterNames = true,
         rangeVariableTypes = true,
       },
+      codelenses = {
+        generate = false,  -- Don't show the `go generate` lens.
+        gc_details = true  -- Show a code lens toggling the display of gc's choices.
+      },
+      staticcheck = true,
     },
   },
   capabilties = {
@@ -51,6 +59,7 @@ lspconfig.rust_analyzer.setup {
 lspconfig.clangd.setup {}
 lspconfig.solargraph.setup {}
 lspconfig.bashls.setup {}
+lspconfig.racket_langserver.setup{}
 
 lspconfig.sumneko_lua.setup {
   settings = {
@@ -114,7 +123,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and

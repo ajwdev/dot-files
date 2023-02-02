@@ -75,6 +75,8 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
 
+opt.textwidth = 78
+
 -- TODO Review these
 opt.wildmode = "list:longest,full"
 opt.wildignore = { "*.swp", "*.bak", "*.pyc", "*.class" }
@@ -100,6 +102,11 @@ opt.formatoptions = opt.formatoptions
   - "o" -- O and o should not continue comments
   + "r" -- But newlines should
   + "j" -- Auto-remove comments when joining lines
-  + "n" -- When formatting text, recognize numbered lists and wrap accordingly
-  + "1" -- Dont break lines after a one character word
-  + "p" -- Dont break lines at single spaces that follow periods
+  -- + "n" -- When formatting text, recognize numbered lists and wrap accordingly
+  -- + "1" -- Dont break lines after a one character word
+  -- + "p" -- Dont break lines at single spaces that follow periods
+
+-- Enable spelling
+opt.spell = true
+-- Only spellcheck designated areas such as comments. These are typically defined by Treesitter queries
+opt.spelloptions = "noplainbuffer"

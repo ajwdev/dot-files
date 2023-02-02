@@ -21,6 +21,16 @@ cmp.setup({
     end
   end,
 
+  sorting = {
+    comparators = {
+      -- See https://github.com/hrsh7th/nvim-cmp/issues/183
+      -- Trying to improve the selection accuracy
+      cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+      cmp.config.compare.locality,
+      -- cmp.config.compare.offset,
+    }
+  },
+
   mapping = {
     ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
     ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
@@ -46,8 +56,8 @@ cmp.setup({
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
+      -- elseif has_words_before() then
+      --   cmp.complete()
       else
         fallback()
       end

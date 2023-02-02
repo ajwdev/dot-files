@@ -19,7 +19,7 @@ augroup END
 vim.cmd [[
 augroup YankHighlight
   autocmd!
-  autocmd TextYankPost * silent! lua vim.highlight.on_yank { timeout = 500 }
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank { timeout = 400 }
 augroup end
 ]]
 
@@ -60,7 +60,7 @@ local windowGrp = nvim_create_augroup("WindowMagic", { clear = true })
 nvim_create_autocmd(
   "FileType",
   {
-    pattern = { "help", "startuptime", "qf", "lspinfo" },
+    pattern = { "help", "startuptime", "qf", "lspinfo", "fugitiveblame" },
     command = [[nnoremap <buffer><silent> q :close<CR>]],
     group = windowGrp,
   }

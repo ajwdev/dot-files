@@ -22,16 +22,11 @@ require('nvim-treesitter.configs').setup {
     "json",
     "toml",
   },
-  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
   highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
+    enable = true,
     additional_vim_regex_highlighting = false,
   },
+
   textobjects = {
     enable = true,
     select = {
@@ -49,6 +44,7 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
+
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -58,18 +54,43 @@ require('nvim-treesitter.configs').setup {
       node_decremental = "grm",
     },
   },
+
   rainbow = {
     enable = true,
     extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
   },
+
   refactor = {
     smart_rename = { enable = true, keymaps = { smart_rename = 'grr' } },
-    highlight_definitions = { enable = true },
+    highlight_definitions = { enable = false },
   },
+
   endwise = {
     enable = true,
+  },
+
+  playground = {
+    enable = true,
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = true, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  },
+
+  query_linter = {
+    enable = true,
+    use_virtual_text = false,
+    lint_events = {"BufWrite", "CursorHold"},
   },
 }

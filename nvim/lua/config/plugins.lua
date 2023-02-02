@@ -83,6 +83,21 @@ return {
     event = 'InsertEnter',
   },
 
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make'
+      },
+    },
+    config = function()
+      require 'config.telescope'
+    end,
+  },
+
   --
   -- Treesitter
   --
@@ -196,15 +211,15 @@ return {
   'jbyuki/venn.nvim',
 
   -- FZF (TODO Replace with telescope?)
-  {
-    'junegunn/fzf.vim',
-    dependencies = {
-      {
-        'junegunn/fzf',
-        build = ':fzf#install()'
-      },
-    },
-  },
+  -- {
+  --   'junegunn/fzf.vim',
+  --   dependencies = {
+  --     {
+  --       'junegunn/fzf',
+  --       build = ':fzf#install()'
+  --     },
+  --   },
+  -- },
 
   -- Finally, syntax things
   { 'lifepillar/pgsql.vim', ft = 'sql' },
