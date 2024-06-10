@@ -43,6 +43,7 @@ return {
               ["<esc>"] = actions.close,
               -- Clear prompt
               ["<C-u>"] = false,
+              ['<c-d>'] = require('telescope.actions').delete_buffer,
             },
           },
         }
@@ -60,7 +61,7 @@ return {
       vim.keymap.set('n', '<C-P>', builtin.find_files, {})
       vim.keymap.set('n', '<leader><leader>f', builtin.find_files, {})
       vim.keymap.set('n', '<leader><leader>h', builtin.help_tags, {})
-      vim.keymap.set('n', '<leader>rg', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>rg', builtin.grep_string, {})
       vim.keymap.set('n', '<leader>Td', builtin.lsp_dynamic_workspace_symbols, {})
       vim.keymap.set('c', 'Rg<cr>', builtin.live_grep, {})
       vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find)

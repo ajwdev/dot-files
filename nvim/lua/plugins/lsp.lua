@@ -14,7 +14,7 @@ return {
         opts = {},
       },
       -- Autoformatting
-      "stevearc/conform.nvim",
+      -- "stevearc/conform.nvim",
       -- Schema information
       "b0o/SchemaStore.nvim",
       -- "williamboman/mason.nvim",

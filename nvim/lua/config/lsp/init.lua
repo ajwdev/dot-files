@@ -98,6 +98,7 @@ lspconfig.solargraph.setup {}
 lspconfig.bashls.setup {}
 lspconfig.racket_langserver.setup {}
 lspconfig.tilt_ls.setup {}
+lspconfig.ruby_lsp.setup {}
 
 
 require("inlay-hints").setup {
