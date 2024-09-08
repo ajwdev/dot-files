@@ -1,3 +1,5 @@
+M = {}
+
 return {
   {
     'folke/twilight.nvim',
@@ -22,19 +24,30 @@ return {
 
   {
     "folke/trouble.nvim",
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects'
+    },
     opts = {
       open_no_results = true,
     },
     cmd = "Trouble",
+    config = function()
+      local repeatable = require("nvim-treesitter.textobjects.repeatable_move")
+      --TODO Why doesn't this work :/
+      local next, prev = repeatable.make_repeatable_move_pair(require("trouble").next, require("trouble").prev)
+      M.diag_next = next
+      M.diag_prev = prev
+    end,
     keys = {
       {
         "]d",
-        function() require("trouble").next() end,
+        function() M.diag_next({ forward = true }) end,
         desc = "Next Item (Trouble)",
       },
       {
         "[d",
-        function() require("trouble").prev() end,
+        -- function() require("trouble").prev() end,
+        function() M.diag_prev({ forward = false }) end,
         desc = "Previous Item (Trouble)",
       },
       {
