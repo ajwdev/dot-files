@@ -1,4 +1,12 @@
 # vim: ft=gitconfig
+#
+##### BEGIN METATRON AUTOCONFIG
+# Do not remove the above line. The metatron CLI uses it to update this file.
+# Set git proxy configuration (must be the first directive in this file)
+[include]
+    path = /home/coder/.gitconfig-proxy
+# Do not remove the below line. The metatron CLI uses it to update this file.
+##### END METATRON AUTOCONFIG
 
 [core]
 	excludesfile = ~/.gitignore_global

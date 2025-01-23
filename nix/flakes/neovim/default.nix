@@ -16,7 +16,7 @@ let
       nil # nix lsp
       gopls
       ruby-lsp
-      zls
+      #zls
       nodePackages.typescript-language-server
       nodePackages.yaml-language-server
     ];

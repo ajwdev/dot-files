@@ -30,14 +30,14 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      outputs.overlays.ghostty
+      #outputs.overlays.ghostty
 
       inputs.myneovim.overlays.default
 
       # You can also add overlays exported from other flakes:
       # inputs.neovim-nightly-overlay.overlays.default
 
-      inputs.zig.overlays.default
+      #inputs.zig.overlays.default
 
       # Or define it inline, for example:
       # (final: prev: {
@@ -46,6 +46,7 @@
       #   });
       # })
     ];
+
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -56,8 +57,8 @@
   };
 
   home = {
-    username = "andrew";
-    homeDirectory = "/home/andrew";
+    username = "andrewwilliams";
+    homeDirectory = "/home/coder";
   };
 
   # TODO
@@ -100,6 +101,15 @@
   #   userEmail = "xiaoyin_c@qq.com";
   # };
 
+  # TODO I like this idea, but the deriavation is readonly and that breaks
+  # zplug :/
+  # home.file.".zplug".source = pkgs.fetchFromGitHub {
+  #    owner = "zplug";
+  #    repo = "zplug";
+  #    rev = "ac6c2a3e9eea6a488d96d98c752ef887e7d5aae3";
+  #    sha256 = "tvFHPCTL3JLGzT4DNVm6AAS9Bot7MClM/g3l4KwoXJo=";
+  # };
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     zsh
@@ -107,19 +117,14 @@
     tmux
     neovim
 
-    yubikey-manager
-
     # utils
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     fzf # A command-line fuzzy finder
     # networking tools
-    iperf3
     ldns # replacement of `dig`, it provide the command `drill`
     ipcalc # it is a calculator for the IPv4/v6 addresses
     # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
     lsof # list open files
     git
     wget
@@ -131,7 +136,6 @@
     gnutar
     gawk
     lsof
-    mtr
     dnsutils # `dig` + `nslookup`
     socat
     nmap
@@ -142,6 +146,8 @@
     # misc
     cowsay
     tree
+    glow
+    bat
 
     httpie
 
@@ -150,28 +156,30 @@
     gdb
     openssl
     # https://github.com/mitchellh/zig-overlay/blob/d07b6a999f051b23ae7704f9d63a966b4b0284d1/flake.nix#L56-L60
-    zigpkgs.master
+    #zigpkgs.master
     # Rust
-    rustup
+    #rustup
     # golang
-    go
-    gopls
+    #go
+    #gopls
+    kubectl
     # gotools
-    go-tools
+    #go-tools
     # gomod2nix.packages.${system}.default
 
     # ruby
-    unstable.arduino-ide
-    unstable.arduino-cli
+    #unstable.arduino-ide
+    #unstable.arduino-cli
 
     unstable.tree-sitter
 
-    ghostty
+    #ghostty
   ];
 
   programs.rbenv.enable = true;
+  # programs.java = {enable = true; package = pkgs.zulu17; };  
 
-  programs.alacritty.enable = true;
+  #programs.alacritty.enable = true;
 
   programs = {
     direnv = {
