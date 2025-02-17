@@ -15,6 +15,7 @@ let
       nil # nix lsp
       gopls
       ruby-lsp
+      solargraph
       zls
       nodePackages.typescript-language-server
       nodePackages.yaml-language-server

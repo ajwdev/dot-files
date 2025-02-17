@@ -161,7 +161,8 @@
           ];
         };
 
-        "work" = nix-darwin.lib.darwinSystem {
+        # Netflix mbp
+        "MacBook-WX1XK" = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           specialArgs = {
             inherit inputs outputs;
@@ -172,7 +173,12 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {inherit inputs outputs;};
+              home-manager.extraSpecialArgs = {
+                inherit inputs outputs;
+                workDotfileArgs = {
+                  metatron_git = "./dotfiles/git/metatron_header";
+                };
+              };
               home-manager.backupFileExtension = "bak";
               users.users.andrewwilliams = {
                 name = nixpkgs.lib.mkForce "andrewwilliams";

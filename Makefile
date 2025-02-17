@@ -18,3 +18,6 @@ ifeq ($(UNAME), Darwin)
 else
 	sudo nixos-rebuild test --flake ".#$(NIXNAME)" --show-trace
 endif
+
+update-lazy:
+	nvim --headless "+Lazy! sync" +qa

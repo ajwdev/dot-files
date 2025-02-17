@@ -165,10 +165,10 @@ return {
     end,
   },
 
-  {
-    "RRethy/vim-illuminate",
-    event = { 'BufReadPost', 'BufNew' },
-  },
+  -- {
+  --   "RRethy/vim-illuminate",
+  --   event = { 'BufReadPost', 'BufNew' },
+  -- },
   {
     "nvzone/typr",
     dependencies = "nvzone/volt",
